@@ -29,7 +29,7 @@ from sage.categories.rings import Rings
 from sage.categories.algebras_with_basis import AlgebrasWithBasis
 from sage.sets.family import Family
 import sage.data_structures.blas_dict as blas
-from sage.rings.polynomial.polynomial_ring import PolynomialRing_general
+from sage.rings.polynomial.polynomial_ring import PolynomialRing_generic
 from sage.rings.polynomial.multi_polynomial_ring_base import MPolynomialRing_base
 from sage.rings.polynomial.polynomial_ring_constructor import PolynomialRing
 from sage.structure.global_options import GlobalOptions
@@ -677,7 +677,7 @@ class DifferentialWeylAlgebra(UniqueRepresentation, Parent):
             sage: W1 is W2
             True
         """
-        if isinstance(R, (PolynomialRing_general, MPolynomialRing_base)):
+        if isinstance(R, (PolynomialRing_generic, MPolynomialRing_base)):
             if names is None:
                 names = R.variable_names()
                 R = R.base_ring()
@@ -786,7 +786,7 @@ class DifferentialWeylAlgebra(UniqueRepresentation, Parent):
             return self.element_class(self, {i: R(c) for i, c in x if R(c) != zero})
         x = self._poly_ring(x)
         return self.element_class(self, {(tuple(m), t): c
-                                         for m, c in x.dict().items()})
+                                         for m, c in x.monomial_coefficients().items()})
 
     def _coerce_map_from_(self, R):
         """
