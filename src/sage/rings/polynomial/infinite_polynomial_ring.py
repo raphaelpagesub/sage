@@ -1693,7 +1693,7 @@ class InfinitePolynomialGen(SageObject):
             False
         """
         return not (self == other)
-
+ 
     def _latex_(self):
         r"""
         EXAMPLES::
